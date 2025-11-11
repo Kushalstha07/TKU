@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
             <div className="contact-item">
               <span className="contact-label">Location:</span>
-              <span className="contact-value">Thamel</span>
+              <span className="contact-value">Lubhu, Lalitpur</span>
             </div>
           </div>
         </div>

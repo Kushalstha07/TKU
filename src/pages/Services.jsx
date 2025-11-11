@@ -1,44 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Services.css';
-
-// Import all design images
-import design1 from '../assets/design1.jpg';
-import design2 from '../assets/design2.jpg';
-import design3 from '../assets/design3.jpg';
-import design4 from '../assets/design4.jpg';
-import design5 from '../assets/design5.jpeg';
-import design6 from '../assets/design6.jpeg';
-import design7 from '../assets/design7.jpeg';
-import design8 from '../assets/design8.jpeg';
-import design9 from '../assets/design9.jpeg';
-import design10 from '../assets/design10.jpeg';
-import design11 from '../assets/design11.jpeg';
-import design12 from '../assets/design12.jpeg';
-import design13 from '../assets/design13.jpeg';
-import design14 from '../assets/design14.jpeg';
-import design15 from '../assets/design15.jpeg';
+import DriveGallery from '../component/DriveGallery';
 
 const Services = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentCategory, setCurrentCategory] = useState('all');
 
-  const designImages = [
-    { id: 1, src: design1, category: 'traditional', title: 'Traditional Design 1' },
-    { id: 2, src: design2, category: 'modern', title: 'Modern Design 1' },
-    { id: 3, src: design3, category: 'traditional', title: 'Traditional Design 2' },
-    { id: 4, src: design4, category: 'vintage', title: 'Vintage Design 1' },
-    { id: 5, src: design5, category: 'modern', title: 'Modern Design 2' },
-    { id: 6, src: design6, category: 'traditional', title: 'Traditional Design 3' },
-    { id: 7, src: design7, category: 'vintage', title: 'Vintage Design 2' },
-    { id: 8, src: design8, category: 'modern', title: 'Modern Design 3' },
-    { id: 9, src: design9, category: 'traditional', title: 'Traditional Design 4' },
-    { id: 10, src: design10, category: 'vintage', title: 'Vintage Design 3' },
-    { id: 11, src: design11, category: 'modern', title: 'Modern Design 4' },
-    { id: 12, src: design12, category: 'traditional', title: 'Traditional Design 5' },
-    { id: 13, src: design13, category: 'vintage', title: 'Vintage Design 4' },
-    { id: 14, src: design14, category: 'modern', title: 'Modern Design 5' },
-    { id: 15, src: design15, category: 'traditional', title: 'Traditional Design 6' }
-  ];
+  // start empty: only show images fetched from Drive
+  const [designImages, setDesignImages] = useState([]);
+
+  // Drive integration (can be provided via Vite env vars)
+  const DEFAULT_DRIVE_FOLDER = import.meta.env.VITE_DRIVE_FOLDER_ID || '16E9apvyrvpDXNITmpSCfT2a0kMUlNRxl';
+  const DEFAULT_DRIVE_KEY = import.meta.env.VITE_DRIVE_API_KEY || 'AIzaSyCQK1-C8o1w5mUZ2lgrF6u-tqKEV1IRxNc';
+
+  // Allow runtime override via a small settings UI (stored in sessionStorage)
+  const [driveFolder, setDriveFolder] = useState(() => sessionStorage.getItem('drive_folder') || DEFAULT_DRIVE_FOLDER);
+  const [driveKey, setDriveKey] = useState(() => sessionStorage.getItem('drive_key') || DEFAULT_DRIVE_KEY);
+  const [showConfig, setShowConfig] = useState(false);
 
   const categories = [
     { id: 'all', name: 'All Designs', icon: '🎨' },
@@ -47,9 +25,42 @@ const Services = () => {
     { id: 'vintage', name: 'Vintage', icon: '⭐' }
   ];
 
+  // Merge drive files into the designImages state when DriveGallery fetches them
+  const handleDriveFiles = useCallback((files) => {
+    if (!Array.isArray(files)) return;
+    const mapped = files.map(f => ({
+      id: f.id,
+      // Prefer Drive API media endpoint with API key — more reliable for <img>
+      src: `https://www.googleapis.com/drive/v3/files/${f.id}?alt=media&key=${driveKey}`,
+      title: f.name,
+      category: 'drive'
+    }));
+    setDesignImages(mapped);
+  }, [driveKey]);
+  const [driveLoading, setDriveLoading] = useState(false);
+  const [driveError, setDriveError] = useState(null);
+  // no debug state in production
+
+  const handleDriveStart = useCallback(() => {
+    setDriveLoading(true);
+    setDriveError(null);
+  }, []);
+
+  const handleDriveError = useCallback((msg) => {
+    setDriveLoading(false);
+    setDriveError(String(msg));
+  }, []);
+
+  const handleDriveDone = useCallback(() => {
+    setDriveLoading(false);
+    setDriveError(null);
+  }, []);
+
   const filteredImages = currentCategory === 'all' 
     ? designImages 
     : designImages.filter(img => img.category === currentCategory);
+
+  // removed debug image load checks for production
 
   const openLightbox = (image) => {
     setSelectedImage(image);
@@ -59,17 +70,19 @@ const Services = () => {
     setSelectedImage(null);
   };
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
+    if (!selectedImage) return;
     const currentIndex = filteredImages.findIndex(img => img.id === selectedImage.id);
     const nextIndex = (currentIndex + 1) % filteredImages.length;
     setSelectedImage(filteredImages[nextIndex]);
-  };
+  }, [selectedImage, filteredImages]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
+    if (!selectedImage) return;
     const currentIndex = filteredImages.findIndex(img => img.id === selectedImage.id);
     const prevIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
     setSelectedImage(filteredImages[prevIndex]);
-  };
+  }, [selectedImage, filteredImages]);
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -82,7 +95,7 @@ const Services = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [selectedImage, filteredImages]);
+  }, [selectedImage, filteredImages, nextImage, prevImage]);
 
   return (
     <div className="services-container">
@@ -96,9 +109,12 @@ const Services = () => {
           </p>
           <div className="hero-stats">
             <div className="stat-item">
-              <span className="stat-number">15+</span>
-              <span className="stat-label">Unique Designs</span>
+                  <span className="stat-number">{designImages.length}</span>
+                  <span className="stat-label">Unique Designs</span>
             </div>
+                <div style={{ marginLeft: 12 }}>
+                  {driveLoading ? <span style={{ color: '#a3bffa' }}>Loading images…</span> : driveError ? <span style={{ color: '#ffb4b4' }}>Drive error: {driveError}</span> : null}
+                </div>
             <div className="stat-item">
               <span className="stat-number">3</span>
               <span className="stat-label">Categories</span>
@@ -133,6 +149,30 @@ const Services = () => {
         </div>
       </section>
 
+  {/* Drive fetcher (no UI) - fetches images from your Drive folder and merges into the gallery */}
+  <DriveGallery folderId={driveFolder} apiKey={driveKey} onFiles={handleDriveFiles} onStart={handleDriveStart} onError={handleDriveError} onDone={handleDriveDone} pollInterval={20000} />
+  {/* pass onDone to clear loading state after successful fetch */}
+
+  {/* Small runtime config UI (toggle) to set Drive folder ID and API key without editing files */}
+  <div style={{ marginTop: 12, marginBottom: 18 }}>
+    <button className="category-btn" style={{ marginRight: 8 }} onClick={() => setShowConfig(s => !s)}>⚙️ Drive Config</button>
+    {showConfig && (
+      <div style={{ marginTop: 8, padding: 12, border: '1px solid rgba(255,255,255,0.06)', borderRadius: 8, background: 'rgba(0,0,0,0.25)' }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <input placeholder="Drive Folder ID" value={driveFolder} onChange={e => setDriveFolder(e.target.value)} style={{ flex: '1 1 320px', padding: 8 }} />
+          <input placeholder="API Key" value={driveKey} onChange={e => setDriveKey(e.target.value)} style={{ flex: '1 1 320px', padding: 8 }} />
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button className="btn" onClick={() => { sessionStorage.setItem('drive_folder', driveFolder); sessionStorage.setItem('drive_key', driveKey); setShowConfig(false); }}>Save</button>
+            <button className="btn" onClick={() => { sessionStorage.removeItem('drive_folder'); sessionStorage.removeItem('drive_key'); setDriveFolder(DEFAULT_DRIVE_FOLDER); setDriveKey(DEFAULT_DRIVE_KEY); setShowConfig(false); }}>Reset</button>
+          </div>
+        </div>
+        <div style={{ marginTop: 8, color: '#cbd5e1', fontSize: 13 }}>
+          Keys entered here live only in your browser session (stored in sessionStorage). They are visible to anyone with access to your browser. For production, prefer restricted API keys set via server or environment.
+        </div>
+      </div>
+    )}
+  </div>
+
       {/* Gallery Section */}
       <section className="gallery-section">
         <div className="gallery-container">
@@ -145,7 +185,7 @@ const Services = () => {
               >
                 <div className="image-wrapper">
                   <img 
-                    src={image.src} 
+                    src={image.src}
                     alt={image.title}
                     className="gallery-image"
                     loading="lazy"
@@ -160,6 +200,9 @@ const Services = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* debug links removed for production */}
+
                 <div className="item-number">{String(image.id).padStart(2, '0')}</div>
               </div>
             ))}

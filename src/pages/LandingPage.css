@@ -150,6 +150,67 @@
   66% { transform: translateY(10px) rotate(-3deg); }
 }
 
+/* Scrolling Banner */
+.scrolling-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: 1.5rem 0;
+  border-top: 3px solid rgba(245,245,220,0.3);
+  border-bottom: 3px solid rgba(245,245,220,0.3);
+  box-shadow: 0 4px 20px rgba(139,69,19,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.scrolling-text {
+  display: inline-block;
+  animation: scroll-left 30s linear infinite;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #F5F5DC;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  will-change: transform;
+}
+
+.scrolling-text span {
+  white-space: nowrap;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsive scrolling banner */
+@media (max-width: 768px) {
+  .scrolling-banner {
+    padding: 1rem 0;
+  }
+  
+  .scrolling-text {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scrolling-text {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .scrolling-banner {
+    padding: 0.8rem 0;
+  }
+}
+
 .section-divider {
   position: absolute;
   left: 0; right: 0; bottom: 0;

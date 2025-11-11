@@ -48,7 +48,10 @@ const LandingPage = () => {
           alt="Textile Factory Hero"
         />
         <div className="landing-text">
-          "Crafting Quality Fabrics for a Sustainable Future."
+          <h1 className="hero-title">Crafting Quality Fabrics for a Sustainable Future</h1>
+          <p className="hero-subtitle">
+            Leading manufacturer of premium textiles with over two decades of excellence in innovation, quality, and environmental responsibility.
+          </p>
           <br />
           <button className="cta-btn">Explore Our Fabrics</button>
         </div>
@@ -66,6 +69,7 @@ const LandingPage = () => {
           </svg>
         </div>
       </div>
+
       <section className="factory-section">
         <div className="section-decoration">
           <div className="decoration-line"></div>
@@ -90,8 +94,8 @@ const LandingPage = () => {
                 <span className="stat-label">Happy Clients</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">50+</span>
-                <span className="stat-label">Countries Served</span>
+                <span className="stat-number">25+</span>
+                <span className="stat-label"> Location Served</span>
               </div>
             </div>
           </div>
