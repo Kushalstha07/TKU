@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Services.css';
 import DriveGallery from '../component/DriveGallery';
 
 const Services = () => {
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentCategory, setCurrentCategory] = useState('all');
 
@@ -247,7 +249,7 @@ const Services = () => {
           <p className="cta-description">
             Let us bring your vision to life with our exceptional designs and craftsmanship
           </p>
-          <button className="cta-button">
+          <button className="cta-button" onClick={() => navigate('/contact')}>
             Get Started Today
           </button>
         </div>

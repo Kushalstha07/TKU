@@ -69,7 +69,11 @@ const Contact = () => {
     <div className="contact-container">
       <section className="contact-hero">
         <div className="hero-content">
+          <p className="hero-eyebrow">Contact Us</p>
           <h1 className="contact-title">Get In Touch</h1>
+          <p className="contact-subtitle">
+            Have a question or want to work together? We'd love to hear from you.
+          </p>
         </div>
       </section>
 

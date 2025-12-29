@@ -49,9 +49,14 @@ const LandingPage = () => {
           alt="Textile Factory Hero"
         />
         <div className="landing-text">
-          <h1 className="hero-title" style={{ fontSize: '4.8rem' }}>Crafting Quality Fabrics for a Sustainable Future</h1>
-          <br />
-         
+          <h1 className="hero-title">Crafting Quality Fabrics for a Sustainable Future</h1>
+          <p className="hero-subtitle">नेपालको गर्वको रेशम उद्योग - Where Tradition Meets Innovation</p>
+          <button className="cta-btn" onClick={() => document.querySelector('.factory-section').scrollIntoView({ behavior: 'smooth' })}>
+            Discover Our Story
+          </button>
+          <div className="scroll-indicator">
+            <span className="scroll-arrow">↓</span>
+          </div>
         </div>
         <div className="section-divider">
           <svg viewBox="0 0 1440 100" width="100%" height="100" preserveAspectRatio="none">
@@ -199,30 +204,45 @@ const LandingPage = () => {
             <div className="decoration-line"></div>
           </div>
           <h2 className="section-title">हाम्रा कपडा उत्पादनहरू</h2>
+          <p className="section-subtitle">Premium textile designs crafted with precision and care</p>
 
-         <div className='landingpage-photo'>
-         <img src={third} alt="Product 1" className="product-image" />
-          <div className='landingpage-list'>
-         <h1 style={{ color: 'black' }}> Striped Pattern Design</h1>
-         <li><h3>Visual Structure </h3></li>
-          <li><h3>Garments</h3></li>
-          <li><h3>Pattern Customization</h3></li>
-          <li><h3>Easy Pattern Recognition</h3></li>
-          <li><h3>Design Flexibility</h3></li>
-         </div>
-         </div>
+          <div className='products-grid-modern'>
+            <div className='product-card-modern'>
+              <div className='product-image-wrapper'>
+                <img src={third} alt="Striped Pattern Design" className="product-image-modern" />
+                <div className='product-badge'>Popular</div>
+              </div>
+              <div className='product-content'>
+                <h3 className='product-title'>Striped Pattern Design</h3>
+                <p className='product-description'>Classic elegance meets contemporary style with our versatile striped patterns</p>
+                <ul className='product-features'>
+                  <li><span className='feature-icon'>✓</span> Visual Structure</li>
+                  <li><span className='feature-icon'>✓</span> Garment Ready</li>
+                  <li><span className='feature-icon'>✓</span> Pattern Customization</li>
+                  <li><span className='feature-icon'>✓</span> Easy Recognition</li>
+                  <li><span className='feature-icon'>✓</span> Design Flexibility</li>
+                </ul>
+              </div>
+            </div>
 
-         <div className='landingpage-photoone'>
-          <div className='landingpage-listone'>
-          <h1 style={{color:'black'}}>Unstrip Pattern Design</h1>
-          <li><h3>Plain Surface Design</h3></li>
-          <li><h3>Color Consistency</h3></li>
-          <li><h3>Professional Appearance</h3></li>
-          <li><h3>Craft & DIY Projects</h3></li>
-          <li><h3>Custom Printing</h3></li>
+            <div className='product-card-modern'>
+              <div className='product-image-wrapper'>
+                <img src={design16} alt="Plain Pattern Design" className="product-image-modern" />
+                <div className='product-badge premium'>Premium</div>
+              </div>
+              <div className='product-content'>
+                <h3 className='product-title'>Plain Pattern Design</h3>
+                <p className='product-description'>Timeless simplicity with superior quality for professional applications</p>
+                <ul className='product-features'>
+                  <li><span className='feature-icon'>✓</span> Plain Surface Design</li>
+                  <li><span className='feature-icon'>✓</span> Color Consistency</li>
+                  <li><span className='feature-icon'>✓</span> Professional Appearance</li>
+                  <li><span className='feature-icon'>✓</span> Craft & DIY Ready</li>
+                  <li><span className='feature-icon'>✓</span> Custom Printing</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <img src={design16} alt="Product 1" className="product-image" />
-         </div>
 
 
         </div>

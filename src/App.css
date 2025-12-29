@@ -22,7 +22,7 @@ html, body, #root {
 
 #root {
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   /* Remove max-width, margin, and padding for full coverage */
   box-sizing: border-box;
   text-align: center;
