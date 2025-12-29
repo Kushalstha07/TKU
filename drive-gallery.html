@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Drive Gallery — Dynamic Google Drive Images</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#7c3aed;
+      --gap:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef8;background:linear-gradient(180deg,#041022 0%, #07142a 100%);padding:24px}
+    .container{max-width:1200px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    h1{font-size:20px;margin:0;color:#fff}
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent);color:white;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+    .btn[disabled]{opacity:.5;cursor:default}
+    .status{color:var(--muted);font-size:13px}
+
+    /* Grid */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-radius:12px;overflow:hidden;position:relative;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .22s ease, box-shadow .22s ease, opacity .3s ease;opacity:0;transform:translateY(8px)}
+    .card.visible{opacity:1;transform:none}
+    .thumb{width:100%;height:0;padding-bottom:66.666%;position:relative;background:#071428}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .meta{padding:12px 14px;border-top:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .name{font-size:14px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .mime{font-size:12px;color:var(--muted)}
+
+    /* Hover effects */
+    .card:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(4,10,30,0.6)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(2,6,23,0.6));opacity:0;transition:opacity .18s ease}
+    .card:hover .overlay{opacity:1}
+    .overlay .label{position:absolute;left:12px;bottom:12px;color:#fff;padding:6px 10px;background:rgba(0,0,0,0.35);border-radius:999px;font-size:13px}
+
+    /* Empty state */
+    .empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed rgba(255,255,255,0.04);border-radius:12px}
+
+    /* responsive tweaks */
+    @media (max-width:520px){.gallery{grid-template-columns:repeat(2,1fr);gap:12px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Drive Gallery</h1>
+      <div class="controls">
+        <div class="status" id="status">Ready</div>
+        <button class="btn" id="refreshBtn">Refresh</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="gallery" class="gallery" aria-live="polite"></div>
+      <div id="empty" class="empty" style="display:none;margin-top:12px">No images found in the Drive folder.</div>
+    </main>
+  </div>
+
+  <script>
+    /*****************************************************************
+     * Dynamic Google Drive Gallery
+     * - No backend required
+     * - Replace YOUR_FOLDER_ID and YOUR_API_KEY below
+     * - The Drive folder and files must be shared publicly (Anyone with the link can view)
+     * - This script polls the Drive API every 20 seconds to reflect changes
+     *****************************************************************/
+
+    // ======= CONFIG PLACEHOLDERS =======
+  const FOLDER_ID = '16E9apvyrvpDXNITmpSCfT2a0kMUlNRxl'; // <-- connected folder ID from your link
+  const API_KEY = 'AIzaSyCQK1-C8o1w5mUZ2lgrF6u-tqKEV1IRxNc';     // <-- your Google API key (consider restricting it in Cloud Console)
+    // ====================================
+
+    // Poll interval in milliseconds (adjust as needed). Be mindful of API quotas.
+    const POLL_INTERVAL = 20000;
+
+    const gallery = document.getElementById('gallery');
+    const statusEl = document.getElementById('status');
+    const emptyEl = document.getElementById('empty');
+    const refreshBtn = document.getElementById('refreshBtn');
+
+    let currentFiles = new Map(); // id -> file
+    let pollTimer = null;
+
+    function setStatus(text){ statusEl.textContent = text }
+
+    // Build Drive API query and fetch all pages
+    async function fetchAllFiles(folderId){
+      const files = [];
+      let pageToken = undefined;
+      const base = 'https://www.googleapis.com/drive/v3/files';
+
+      do {
+        const q = encodeURIComponent(`'${folderId}'+in+parents+and+mimeType+contains+'image/'`);
+        const fields = encodeURIComponent('nextPageToken,files(id,name,mimeType)');
+        const pageParam = pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '';
+        const url = `${base}?q=${q}&key=${API_KEY}&fields=${fields}${pageParam}&orderBy=name`;
+
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Drive API error ' + res.status);
+        const json = await res.json();
+        if (Array.isArray(json.files)) files.push(...json.files);
+        pageToken = json.nextPageToken;
+      } while (pageToken);
+
+      return files;
+    }
+
+    function makeImageUrl(fileId){
+      return `https://drive.google.com/uc?id=${fileId}`;
+    }
+
+    function createCard(file){
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.dataset.id = file.id;
+
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+      const img = document.createElement('img');
+      img.src = makeImageUrl(file.id);
+      img.alt = file.name || '';
+      img.loading = 'lazy';
+      thumb.appendChild(img);
+
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      const lbl = document.createElement('div');
+      lbl.className = 'label';
+      lbl.textContent = file.name || '';
+      overlay.appendChild(lbl);
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      const name = document.createElement('div');
+      name.className = 'name';
+      name.textContent = file.name || '';
+      const mime = document.createElement('div');
+      mime.className = 'mime';
+      mime.textContent = file.mimeType || '';
+      meta.appendChild(name);
+      meta.appendChild(mime);
+
+      card.appendChild(thumb);
+      card.appendChild(overlay);
+      card.appendChild(meta);
+
+      // Fade-in when added
+      requestAnimationFrame(() => card.classList.add('visible'));
+      return card;
+    }
+
+    function renderDiff(newList){
+      const newIds = new Set(newList.map(f => f.id));
+
+      // Remove cards for deleted files
+      currentFiles.forEach((file, id) => {
+        if (!newIds.has(id)){
+          const node = gallery.querySelector(`.card[data-id="${id}"]`);
+          if (node){
+            node.style.transition = 'opacity .25s ease, transform .25s ease';
+            node.style.opacity = '0';
+            node.style.transform = 'translateY(8px)';
+            setTimeout(()=> node.remove(), 300);
+          }
+          currentFiles.delete(id);
+        }
+      });
+
+      // Add new cards (preserve order of newList)
+      newList.forEach(file => {
+        if (!currentFiles.has(file.id)){
+          const card = createCard(file);
+          gallery.appendChild(card);
+          currentFiles.set(file.id, file);
+        } else {
+          // update name/mimetype if changed
+          const prev = currentFiles.get(file.id);
+          if (prev.name !== file.name || prev.mimeType !== file.mimeType){
+            const node = gallery.querySelector(`.card[data-id="${file.id}"]`);
+            if (node){
+              node.querySelector('.name').textContent = file.name || '';
+              node.querySelector('.mime').textContent = file.mimeType || '';
+            }
+            currentFiles.set(file.id, file);
+          }
+        }
+      });
+
+      emptyEl.style.display = currentFiles.size ? 'none' : '';
+    }
+
+    async function refresh(){
+      if (!FOLDER_ID || !API_KEY){
+        setStatus('Please set YOUR_FOLDER_ID and YOUR_API_KEY in the script.');
+        return;
+      }
+      setStatus('Fetching...');
+      try{
+        const files = await fetchAllFiles(FOLDER_ID);
+        // Filter only image MIME types (already queried) and sort by name
+        const ordered = files.sort((a,b)=> (a.name||'').localeCompare(b.name||''));
+        renderDiff(ordered);
+        setStatus(`${ordered.length} image(s)`);
+      }catch(err){
+        console.error(err);
+        setStatus('Failed to fetch images. Check folder visibility, API key and quotas.');
+      }
+    }
+
+    refreshBtn.addEventListener('click', ()=> refresh());
+
+    // Start polling
+    function startPolling(){
+      if (pollTimer) clearInterval(pollTimer);
+      pollTimer = setInterval(refresh, POLL_INTERVAL);
+    }
+
+    // Initial load
+    refresh();
+    startPolling();
+
+    // Expose refresh on window for quick debugging
+    window.driveGalleryRefresh = refresh;
+  </script>
+</body>
+</html>
