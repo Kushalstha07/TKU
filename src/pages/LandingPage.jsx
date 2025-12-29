@@ -5,6 +5,8 @@ import factory1 from '../assets/factoryimage1.png';
 import factory2 from '../assets/factoryimage2.png';
 import factory3 from '../assets/factoryimage3.png';
 import factory4 from '../assets/factoryimage4.png';
+import third from '../assets/third.jpeg';
+import design16 from '../assets/design16.jpeg';
 
 const carouselImages = [factory1, factory2, factory3, factory4];
 
@@ -39,7 +41,6 @@ const LandingPage = () => {
   return (
     <div>
       <div className="landing-container">
-
         <div className="hero-overlay" />
         <img
           ref={bgRef}
@@ -48,12 +49,9 @@ const LandingPage = () => {
           alt="Textile Factory Hero"
         />
         <div className="landing-text">
-          <h1 className="hero-title">Crafting Quality Fabrics for a Sustainable Future</h1>
-          <p className="hero-subtitle">
-            Leading manufacturer of premium textiles with over two decades of excellence in innovation, quality, and environmental responsibility.
-          </p>
+          <h1 className="hero-title" style={{ fontSize: '4.8rem' }}>Crafting Quality Fabrics for a Sustainable Future</h1>
           <br />
-          <button className="cta-btn">Explore Our Fabrics</button>
+         
         </div>
         <div className="section-divider">
           <svg viewBox="0 0 1440 100" width="100%" height="100" preserveAspectRatio="none">
@@ -77,8 +75,7 @@ const LandingPage = () => {
           <div className="decoration-line"></div>
         </div>
         <h2 className="factory-heading">
-          <span className="heading-highlight">Trustable</span> Textile Factory In Nepal
-        </h2>
+          <span className="heading-highlight"></span> नेपालको भरपर्दो कपडा (टेक्सटाइल) उद्योग</h2>
         <div className="factory-content">
           <div className="factory-desc">
             <div className="desc-icon">🏭</div>
@@ -142,13 +139,23 @@ const LandingPage = () => {
             <div className="decoration-icon">⭐</div>
             <div className="decoration-line"></div>
           </div>
-          <h2 className="section-title">Why Choose Trilochana Kapada Udyog?</h2>
+          <h2 className="section-title">किन त्रिलोचना कपडा उद्योग रोज्ने?</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🌱</div>
-              <h3>Sustainable Practices</h3>
-              <p>Eco-friendly manufacturing processes that protect our environment while delivering premium quality fabrics.</p>
-            </div>
+              <div className="feature-icon">🧵</div>
+              <h3>Premium Quality Fabrics</h3>
+              <p>Carefully sourced materials that offer durability, comfort, and a refined finish for every use.</p>
+              </div>
+              <div className="feature-card">
+                <div className="feature-icon">🎨</div>
+                <h3>Wide Variety of Designs</h3>
+                <p>Explore an extensive range of colors, patterns, and textures to match every style and requirement.</p>
+                </div>
+                <div className="feature-card">
+                  <div className="feature-icon">🌿</div>
+                  <h3>Sustainable Materials</h3>
+                  <p>Eco-friendly fabrics produced with responsible practices to support a greener future.</p>
+                  </div>
             <div className="feature-card">
               <div className="feature-icon">⚡</div>
               <h3>Fast Delivery</h3>
@@ -191,24 +198,33 @@ const LandingPage = () => {
             <div className="decoration-icon">🎯</div>
             <div className="decoration-line"></div>
           </div>
-          <h2 className="section-title">Our Premium Products</h2>
-          <div className="products-grid">
-            <div className="product-card">
-              <div className="product-image">🧵</div>
-              <h3>Cotton Fabrics</h3>
-              <p>Premium quality cotton materials perfect for garments and home textiles.</p>
-            </div>
-            <div className="product-card">
-              <div className="product-image">✨</div>
-              <h3>Synthetic Blends</h3>
-              <p>Innovative synthetic-natural blends for modern textile applications.</p>
-            </div>
-            <div className="product-card">
-              <div className="product-image">🌟</div>
-              <h3>Specialty Fabrics</h3>
-              <p>Custom-made fabrics for specific industrial and fashion requirements.</p>
-            </div>
+          <h2 className="section-title">हाम्रा कपडा उत्पादनहरू</h2>
+
+         <div className='landingpage-photo'>
+         <img src={third} alt="Product 1" className="product-image" />
+          <div className='landingpage-list'>
+         <h1 style={{ color: 'black' }}> Striped Pattern Design</h1>
+         <li><h3>Visual Structure </h3></li>
+          <li><h3>Garments</h3></li>
+          <li><h3>Pattern Customization</h3></li>
+          <li><h3>Easy Pattern Recognition</h3></li>
+          <li><h3>Design Flexibility</h3></li>
+         </div>
+         </div>
+
+         <div className='landingpage-photoone'>
+          <div className='landingpage-listone'>
+          <h1 style={{color:'black'}}>Unstrip Pattern Design</h1>
+          <li><h3>Plain Surface Design</h3></li>
+          <li><h3>Color Consistency</h3></li>
+          <li><h3>Professional Appearance</h3></li>
+          <li><h3>Craft & DIY Projects</h3></li>
+          <li><h3>Custom Printing</h3></li>
           </div>
+          <img src={design16} alt="Product 1" className="product-image" />
+         </div>
+
+
         </div>
       </section>
     </div>

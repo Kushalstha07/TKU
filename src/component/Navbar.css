@@ -11,12 +11,14 @@
   z-index: 1000;
   backdrop-filter: blur(10px);
   will-change: transform;
+  gap: 14%;
 }
 
 .navbar-logo {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .navbar-logo a {

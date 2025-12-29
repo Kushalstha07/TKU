@@ -19,10 +19,10 @@ const Services = () => {
   const [showConfig, setShowConfig] = useState(false);
 
   const categories = [
-    { id: 'all', name: 'All Designs', icon: '🎨' },
-    { id: 'traditional', name: 'Traditional', icon: '🏛️' },
-    { id: 'modern', name: 'Modern', icon: '🔥' },
-    { id: 'vintage', name: 'Vintage', icon: '⭐' }
+    { id: 'all', name: 'All Designs' },
+    { id: 'traditional', name: 'Traditional' },
+    { id: 'modern', name: 'Modern' },
+    { id: 'vintage', name: 'Vintage' }
   ];
 
   // Merge drive files into the designImages state when DriveGallery fetches them
@@ -109,15 +109,17 @@ const Services = () => {
           </p>
           <div className="hero-stats">
             <div className="stat-item">
-                  <span className="stat-number">{designImages.length}</span>
+                  <span className="stat-number">2</span>
                   <span className="stat-label">Unique Designs</span>
             </div>
-                <div style={{ marginLeft: 12 }}>
-                  {driveLoading ? <span style={{ color: '#a3bffa' }}>Loading images…</span> : driveError ? <span style={{ color: '#ffb4b4' }}>Drive error: {driveError}</span> : null}
+                <div style={{ marginLeft: 8 }}>
+                  {driveLoading ? <span style={{ color: '#a3bffa' }}>Loading images…</span> 
+            : driveError ? <span style={{ color: '#ffb4b4' }}>Drive error: {driveError}</span> 
+            : null}
                 </div>
             <div className="stat-item">
-              <span className="stat-number">3</span>
-              <span className="stat-label">Categories</span>
+              <span className="stat-number">100%</span>
+              <span className="stat-label">Excellence</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">100%</span>
@@ -130,6 +132,7 @@ const Services = () => {
           <div className="floating-element">✂️</div>
           <div className="floating-element">🎨</div>
           <div className="floating-element">📐</div>
+
         </div>
       </section>
 
