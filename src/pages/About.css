@@ -6,31 +6,51 @@
 }
 
 .about-hero {
-  padding: 6rem 2rem 4rem 2rem;
+  /* occupy full viewport and remove large vertical padding */
+  padding: 0 2rem;
   text-align: center;
   background: linear-gradient(135deg, rgba(245,245,220,0.9) 0%, rgba(240,240,232,0.8) 100%);
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
+.heroo-content {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('../assets/factoryimage2.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
 }
 
 .about-title {
-  font-size: 3.5rem;
+  /* use solid, readable text on image */
+  font-size: 4rem;
   font-weight: 800;
-  color: #8B4513;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  text-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  line-height: 1.05;
 }
 
 .about-subtitle {
-  font-size: 1.3rem;
-  color: #5D4037;
+  font-size: 1.35rem;
+  color: rgba(255,255,255,0.95);
   line-height: 1.6;
+  text-shadow: 0 6px 16px rgba(0,0,0,0.45);
 }
 
 .about-content {
@@ -96,10 +116,15 @@
   line-height: 1.6;
 }
 
+/* responsive adjustments */
+@media (max-width: 1024px) {
+  .about-title { font-size: 3rem; }
+  .about-subtitle { font-size: 1.1rem; }
+}
+
 @media (max-width: 768px) {
-  .about-title {
-    font-size: 2.5rem;
-  }
+  .about-title { font-size: 2.5rem; padding: 0 1rem; text-align: center; }
+  .about-subtitle { font-size: 0.95rem; padding: 0 1rem; text-align: center; }
   
   .about-section {
     padding: 2rem;

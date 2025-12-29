@@ -65,10 +65,22 @@
 
 .locations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
+/* responsive: 2 columns for medium, 1 for small */
+@media (max-width: 1024px) {
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .location-item {
   padding: 1.5rem;
   background-size: cover;
@@ -134,9 +146,5 @@
 
   .network-description {
     padding: 2rem;
-  }
-
-  .locations-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 }

@@ -70,9 +70,6 @@ const Contact = () => {
       <section className="contact-hero">
         <div className="hero-content">
           <h1 className="contact-title">Get In Touch</h1>
-          <p className="contact-subtitle">
-            Ready to bring your textile vision to life? We'd love to hear from you.
-          </p>
         </div>
       </section>
 
@@ -102,7 +99,7 @@ const Contact = () => {
                 <div className="info-icon">📍</div>
                 <div className="info-details">
                   <h3>Location</h3>
-                  <p>Thamel, Kathmandu</p>
+                  <p>Lubhu, Lalitpur</p>
                 </div>
               </div>
 

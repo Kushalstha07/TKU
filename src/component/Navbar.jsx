@@ -12,7 +12,9 @@ const Navbar = () => {
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
+        <h2 style={{color:'rgba(139,69,19)'}}> Trilochana Kapada Udhyog</h2>
       </div>
+      
       <ul className="navbar-links">
         <li><Link to="/" className={location.pathname === "/" ? "active" : ""}>Home</Link></li>
         <li><Link to="/services" className={location.pathname === "/services" ? "active" : ""}>Services</Link></li>

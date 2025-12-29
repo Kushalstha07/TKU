@@ -6,10 +6,12 @@ const About = () => {
     <div className="about-container">
       <section className="about-hero">
         <div className="hero-content">
+          <div className="heroo-content">
           <h1 className="about-title">About Trilochana Kapada Udyog</h1>
           <p className="about-subtitle">
             Crafting Excellence in Textile Manufacturing Since Our Inception
           </p>
+          </div>
         </div>
       </section>
 
