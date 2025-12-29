@@ -379,6 +379,20 @@ body {
     gap: 2rem;
   }
   
+  .factory-desc {
+    padding: 2rem 1.5rem;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .factory-desc p {
+    font-size: 1rem;
+    line-height: 1.7;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -418,6 +432,32 @@ body {
 
   .float-element {
     display: none;
+  }
+  
+  .factory-desc {
+    padding: 1.75rem 1.25rem;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .factory-desc h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .factory-desc p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .desc-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
   }
   
   .features-container,
