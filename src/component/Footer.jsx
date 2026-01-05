@@ -23,7 +23,7 @@ const Footer = () => {
             <Link to="/" className="footer-link">Home</Link>
             <Link to="/services" className="footer-link">Services</Link>
             <Link to="/about" className="footer-link">About Us</Link>
-            <Link to="/supply-location" className="footer-link">Supply Locations</Link>
+            <Link to="/supply" className="footer-link">Supply Locations</Link>
             <Link to="/contact" className="footer-link">Contact</Link>
           </div>
         </div>
