@@ -22,9 +22,6 @@ const Services = () => {
 
   const categories = [
     { id: 'all', name: 'All Designs' },
-    { id: 'traditional', name: 'Traditional' },
-    { id: 'modern', name: 'Modern' },
-    { id: 'vintage', name: 'Vintage' }
   ];
 
   // Merge drive files into the designImages state when DriveGallery fetches them
@@ -114,11 +111,11 @@ const Services = () => {
                   <span className="stat-number">2</span>
                   <span className="stat-label">Unique Designs</span>
             </div>
-                <div style={{ marginLeft: 8 }}>
+                {/* <div style={{ marginLeft: 8 }}>
                   {driveLoading ? <span style={{ color: '#a3bffa' }}>Loading images…</span> 
             : driveError ? <span style={{ color: '#ffb4b4' }}>Drive error: {driveError}</span> 
             : null}
-                </div>
+                </div> */}
             <div className="stat-item">
               <span className="stat-number">100%</span>
               <span className="stat-label">Excellence</span>
@@ -134,7 +131,6 @@ const Services = () => {
           <div className="floating-element">✂️</div>
           <div className="floating-element">🎨</div>
           <div className="floating-element">📐</div>
-
         </div>
       </section>
 

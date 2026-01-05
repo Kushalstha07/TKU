@@ -147,32 +147,32 @@ const LandingPage = () => {
           <h2 className="section-title">किन त्रिलोचना कपडा उद्योग रोज्ने?</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🧵</div>
+              <div className="feature-icon">1</div>
               <h3>Premium Quality Fabrics</h3>
               <p>Carefully sourced materials that offer durability, comfort, and a refined finish for every use.</p>
               </div>
               <div className="feature-card">
-                <div className="feature-icon">🎨</div>
+                <div className="feature-icon">2</div>
                 <h3>Wide Variety of Designs</h3>
                 <p>Explore an extensive range of colors, patterns, and textures to match every style and requirement.</p>
                 </div>
                 <div className="feature-card">
-                  <div className="feature-icon">🌿</div>
+                  <div className="feature-icon">3</div>
                   <h3>Sustainable Materials</h3>
                   <p>Eco-friendly fabrics produced with responsible practices to support a greener future.</p>
                   </div>
             <div className="feature-card">
-              <div className="feature-icon">⚡</div>
+              <div className="feature-icon">4</div>
               <h3>Fast Delivery</h3>
               <p>Quick turnaround times with reliable shipping to meet your deadlines without compromising quality.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🏆</div>
+              <div className="feature-icon">5</div>
               <h3>Premium Quality</h3>
               <p>International standards with rigorous quality control ensuring every fabric meets excellence criteria.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🤝</div>
+              <div className="feature-icon">6</div>
               <h3>Trusted Partnership</h3>
               <p>Long-term relationships with clients worldwide, built on trust, reliability, and exceptional service.</p>
             </div>
