@@ -23,12 +23,14 @@ export default function DriveGallery({ folderId, apiKey, onFiles, pollInterval =
       const base = 'https://www.googleapis.com/drive/v3/files';
 
       do {
-  // Build the q parameter using spaces (the Drive API expects e.g. "'FOLDER_ID' in parents and mimeType contains 'image/'")
-  const qRaw = `'${folderId}' in parents and mimeType contains 'image/'`;
-  const q = encodeURIComponent(qRaw);
-        const fields = encodeURIComponent('nextPageToken,files(id,name,mimeType)');
-        const pageParam = pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '';
-        const url = `${base}?q=${q}&key=${apiKey}&fields=${fields}${pageParam}&orderBy=name`;
+      // Build the q parameter using spaces (the Drive API expects e.g. "'FOLDER_ID' in parents and mimeType contains 'image/'")
+      const qRaw = `'${folderId}' in parents and mimeType contains 'image/'`;
+      const q = encodeURIComponent(qRaw);
+      // thumbnailLink helps with reliable image rendering; webContentLink/webViewLink can be useful fallback URLs when available
+      const fields = encodeURIComponent('nextPageToken,files(id,name,mimeType,thumbnailLink,webContentLink,webViewLink)');
+      const pageParam = pageToken ? `&pageToken=${encodeURIComponent(pageToken)}` : '';
+      // supportsAllDrives/includeItemsFromAllDrives makes folder listing work for Shared Drives too
+      const url = `${base}?q=${q}&key=${apiKey}&fields=${fields}${pageParam}&orderBy=name&supportsAllDrives=true&includeItemsFromAllDrives=true`;
 
         const controller = new AbortController();
         abortRef.current = controller;
@@ -61,7 +63,9 @@ export default function DriveGallery({ folderId, apiKey, onFiles, pollInterval =
     };
 
     load();
-    timerRef.current = setInterval(load, pollInterval);
+    if (pollInterval > 0) {
+      timerRef.current = setInterval(load, pollInterval);
+    }
 
     return () => {
       mounted = false;

@@ -24,18 +24,45 @@ const Services = () => {
     { id: 'all', name: 'All Designs' },
   ];
 
+  const buildDriveSrcs = useCallback((fileId, thumb, webContentLink) => {
+    const srcs = [];
+
+    // If Drive returns a thumbnailLink, try it first (usually most reliable)
+    if (typeof thumb === 'string' && thumb.length > 0) {
+      // Upscale common size param when present
+      srcs.push(thumb.replace(/=s\d+(-c)?$/, '=w1600'));
+      srcs.push(thumb);
+    }
+
+    // Common public image endpoints for Google Drive
+    srcs.push(`https://lh3.googleusercontent.com/d/${fileId}`);
+    srcs.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`);
+    srcs.push(`https://drive.google.com/uc?export=view&id=${fileId}`);
+
+    if (webContentLink) {
+      srcs.push(webContentLink);
+    }
+
+    // Drive API media endpoint (requires public access; may return 403/JSON)
+    srcs.push(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media&key=${driveKey}`);
+
+    // de-dupe while preserving order
+    return Array.from(new Set(srcs));
+  }, [driveKey]);
+
   // Merge drive files into the designImages state when DriveGallery fetches them
   const handleDriveFiles = useCallback((files) => {
     if (!Array.isArray(files)) return;
     const mapped = files.map(f => ({
       id: f.id,
-      // Prefer Drive API media endpoint with API key — more reliable for <img>
-      src: `https://www.googleapis.com/drive/v3/files/${f.id}?alt=media&key=${driveKey}`,
+      srcs: buildDriveSrcs(f.id, f.thumbnailLink, f.webContentLink),
+      srcIndex: 0,
+      src: buildDriveSrcs(f.id, f.thumbnailLink, f.webContentLink)[0],
       title: f.name,
       category: 'drive'
     }));
     setDesignImages(mapped);
-  }, [driveKey]);
+  }, [driveKey, buildDriveSrcs]);
   const [driveLoading, setDriveLoading] = useState(false);
   const [driveError, setDriveError] = useState(null);
   // no debug state in production
@@ -58,6 +85,16 @@ const Services = () => {
   const filteredImages = currentCategory === 'all' 
     ? designImages 
     : designImages.filter(img => img.category === currentCategory);
+
+  const advanceImageSrc = useCallback((imageId) => {
+    setDesignImages((prev) => prev.map((img) => {
+      if (img.id !== imageId) return img;
+      const srcs = Array.isArray(img.srcs) ? img.srcs : [];
+      const nextIndex = (img.srcIndex ?? 0) + 1;
+      if (nextIndex >= srcs.length) return img;
+      return { ...img, srcIndex: nextIndex, src: srcs[nextIndex] };
+    }));
+  }, []);
 
   // removed debug image load checks for production
 
@@ -111,11 +148,11 @@ const Services = () => {
                   <span className="stat-number">2</span>
                   <span className="stat-label">Unique Designs</span>
             </div>
-                {/* <div style={{ marginLeft: 8 }}>
+                <div style={{ marginLeft: 8 }}>
                   {driveLoading ? <span style={{ color: '#a3bffa' }}>Loading images…</span> 
             : driveError ? <span style={{ color: '#ffb4b4' }}>Drive error: {driveError}</span> 
             : null}
-                </div> */}
+                </div>
             <div className="stat-item">
               <span className="stat-number">100%</span>
               <span className="stat-label">Excellence</span>
@@ -151,7 +188,7 @@ const Services = () => {
       </section>
 
   {/* Drive fetcher (no UI) - fetches images from your Drive folder and merges into the gallery */}
-  <DriveGallery folderId={driveFolder} apiKey={driveKey} onFiles={handleDriveFiles} onStart={handleDriveStart} onError={handleDriveError} onDone={handleDriveDone} pollInterval={20000} />
+  <DriveGallery folderId={driveFolder} apiKey={driveKey} onFiles={handleDriveFiles} onStart={handleDriveStart} onError={handleDriveError} onDone={handleDriveDone} pollInterval={0} />
   {/* pass onDone to clear loading state after successful fetch */}
 
   {/* Small runtime config UI (toggle) to set Drive folder ID and API key without editing files */}
@@ -190,6 +227,7 @@ const Services = () => {
                     alt={image.title}
                     className="gallery-image"
                     loading="lazy"
+                    onError={() => advanceImageSrc(image.id)}
                   />
                   <div className="image-overlay">
                     <div className="overlay-content">
@@ -224,6 +262,7 @@ const Services = () => {
                 src={selectedImage.src} 
                 alt={selectedImage.title}
                 className="lightbox-image"
+                onError={() => advanceImageSrc(selectedImage.id)}
               />
               <div className="lightbox-info">
                 <h2 className="lightbox-title">{selectedImage.title}</h2>
