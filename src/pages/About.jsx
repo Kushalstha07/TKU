@@ -62,19 +62,22 @@ const About = () => {
             <h2 className="section-title">Our Values</h2>
             <div className="values-grid">
               <div className="value-item">
-                <div className="value-icon">✓</div>
+                <div className="value-icon">✦</div>
                 <h3>Quality</h3>
                 <p>We never compromise on the quality of our products and services.</p>
               </div>
               <div className="value-item">
+                <div className="value-icon">✦</div>
                 <h3>Innovation</h3>
                 <p>Constantly evolving and adapting to meet modern design trends.</p>
               </div>
               <div className="value-item">
+                <div className="value-icon">✦</div>
                 <h3>Heritage</h3>
                 <p>Preserving traditional textile craftsmanship for future generations.</p>
               </div>
               <div className="value-item">
+                <div className="value-icon">✦</div>
                 <h3>Customer Focus</h3>
                 <p>Dedicated to exceeding customer expectations in every project.</p>
               </div> 

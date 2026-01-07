@@ -23,6 +23,7 @@
   font-weight: 700;
   color: #333;
   margin-bottom: 1rem;
+  padding-top: 4%;
 }
 
 .services-subtitle {
@@ -30,6 +31,7 @@
   color: #666;
   line-height: 1.6;
   margin-bottom: 2rem;
+  padding-top: 4%;
 }
 
 .hero-stats {

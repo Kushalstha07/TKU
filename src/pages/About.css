@@ -17,7 +17,7 @@
 
 .heroo-content {
   width: 100%;
-  min-height: 60vh;
+  min-height: 90vh;
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/factoryimage2.png');
   background-repeat: no-repeat;
   background-position: center center;
@@ -160,6 +160,7 @@
   font-size: 2rem;
   margin-bottom: 1rem;
   display: block;
+  color: #8B4513;
 }
 
 .value-item h3 {

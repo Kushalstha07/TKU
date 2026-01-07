@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SupplyLocation.css';
 import thamelImg from '../assets/thamel.jpeg';
 import boudhaImg from '../assets/boudha.jpeg';
@@ -29,11 +30,11 @@ const regions = {
 };
 
 const SupplyLocation = () => {
+  const navigate = useNavigate();
   return (
     <div className="supply-container">
       <section className="supply-hero">
         <div className="hero-content">
-          <p className="hero-eyebrow">Supply Network</p>
           <h1 className="supply-title">Reaching Communities Across Nepal</h1>
           <p className="supply-subtitle">
             From bustling city centers to regional hubs, our distribution partners ensure
@@ -49,11 +50,6 @@ const SupplyLocation = () => {
             <div className="coverage-icon">🗺️</div>
             <div className="coverage-number">10+</div>
             <div className="coverage-label">Locations</div>
-          </div>
-          <div className="coverage-item">
-            <div className="coverage-icon">🏙️</div>
-            <div className="coverage-number">7</div>
-            <div className="coverage-label">Provinces</div>
           </div>
           <div className="coverage-item">
             <div className="coverage-icon">🚚</div>
@@ -72,21 +68,12 @@ const SupplyLocation = () => {
         <div className="network-description">
           <h2>Strategic Locations</h2>
           <p>
-            We continue to expand our footprint so that retailers and creators can access
-            high-quality textiles without delay. The locations below represent our primary
-            supply nodes, each selected for its unique role within Nepal&apos;s vibrant market.
+            We continue to expand our footprint at these locations:
           </p>
         </div>
 
         {/* Kathmandu Valley Section */}
         <div className="region-section">
-          <div className="region-header">
-            <h3 className="region-title">
-              <span className="region-icon">🏔️</span>
-              Kathmandu Valley
-            </h3>
-            <p className="region-subtitle">6 strategic locations in the capital region</p>
-          </div>
           <div className="locations-grid">
             {regions.kathmandu.map((location) => (
               <div
@@ -107,13 +94,6 @@ const SupplyLocation = () => {
 
         {/* Regional Hubs Section */}
         <div className="region-section">
-          <div className="region-header">
-            <h3 className="region-title">
-              <span className="region-icon">🌏</span>
-              Regional Hubs
-            </h3>
-            <p className="region-subtitle">Major distribution centers across Nepal</p>
-          </div>
           <div className="locations-grid">
             {regions.regional.map((location) => (
               <div
@@ -137,7 +117,7 @@ const SupplyLocation = () => {
           <div className="cta-content">
             <h3>Looking for Distribution in Your Area?</h3>
             <p>We're always expanding our network. Contact us to discuss partnership opportunities.</p>
-            <a href="/contact" className="cta-button">Get in Touch</a>
+            <button className='cta-button' onClick={() => navigate('/contact')}>Get in Touch</button>
           </div>
         </div>
       </section>
