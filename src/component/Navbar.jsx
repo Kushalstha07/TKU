@@ -51,11 +51,31 @@ const Navbar = () => {
       </button>
       
       <ul className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-        <li><Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={closeMenu}><span className="link-icon"></span>Home</Link></li>
-        <li><Link to="/services" className={location.pathname === "/services" ? "active" : ""} onClick={closeMenu}><span className="link-icon"></span>Services</Link></li>
-        <li><Link to="/about" className={location.pathname === "/about" ? "active" : ""} onClick={closeMenu}><span className="link-icon"></span>About Us</Link></li>
-        <li><Link to="/supply" className={location.pathname === "/supply" ? "active" : ""} onClick={closeMenu}><span className="link-icon"></span>Supply</Link></li>
-        <li><Link to="/contact" className={location.pathname === "/contact" ? "active" : ""} onClick={closeMenu}><span className="link-icon"></span>Contact Us</Link></li>
+        <li>
+          <Link to="/" className={location.pathname === "/" ? "active" : ""} onClick={closeMenu}>
+            <span className="link-text">Home</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/services" className={location.pathname === "/services" ? "active" : ""} onClick={closeMenu}>
+            <span className="link-text">Services</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className={location.pathname === "/about" ? "active" : ""} onClick={closeMenu}>
+            <span className="link-text">About Us</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/supply" className={location.pathname === "/supply" ? "active" : ""} onClick={closeMenu}>
+            <span className="link-text">Supply</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className={location.pathname === "/contact" ? "active" : ""} onClick={closeMenu}>
+            <span className="link-text">Contact Us</span>
+          </Link>
+        </li>
       </ul>
     </nav>
   );
