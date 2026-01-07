@@ -15,10 +15,9 @@ const Services = () => {
   const DEFAULT_DRIVE_FOLDER = import.meta.env.VITE_DRIVE_FOLDER_ID || '16E9apvyrvpDXNITmpSCfT2a0kMUlNRxl';
   const DEFAULT_DRIVE_KEY = import.meta.env.VITE_DRIVE_API_KEY || 'AIzaSyCQK1-C8o1w5mUZ2lgrF6u-tqKEV1IRxNc';
 
-  // Allow runtime override via a small settings UI (stored in sessionStorage)
-  const [driveFolder, setDriveFolder] = useState(() => sessionStorage.getItem('drive_folder') || DEFAULT_DRIVE_FOLDER);
-  const [driveKey, setDriveKey] = useState(() => sessionStorage.getItem('drive_key') || DEFAULT_DRIVE_KEY);
-  const [showConfig, setShowConfig] = useState(false);
+  // Config for Drive
+  const driveFolder = DEFAULT_DRIVE_FOLDER;
+  const driveKey = DEFAULT_DRIVE_KEY;
 
   const categories = [
     { id: 'all', name: 'All Designs' },
@@ -190,26 +189,6 @@ const Services = () => {
   {/* Drive fetcher (no UI) - fetches images from your Drive folder and merges into the gallery */}
   <DriveGallery folderId={driveFolder} apiKey={driveKey} onFiles={handleDriveFiles} onStart={handleDriveStart} onError={handleDriveError} onDone={handleDriveDone} pollInterval={0} />
   {/* pass onDone to clear loading state after successful fetch */}
-
-  {/* Small runtime config UI (toggle) to set Drive folder ID and API key without editing files */}
-  <div style={{ marginTop: 12, marginBottom: 18 }}>
-    <button className="category-btn" style={{ marginRight: 8 }} onClick={() => setShowConfig(s => !s)}>⚙️ Drive Config</button>
-    {showConfig && (
-      <div style={{ marginTop: 8, padding: 12, border: '1px solid rgba(255,255,255,0.06)', borderRadius: 8, background: 'rgba(0,0,0,0.25)' }}>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <input placeholder="Drive Folder ID" value={driveFolder} onChange={e => setDriveFolder(e.target.value)} style={{ flex: '1 1 320px', padding: 8 }} />
-          <input placeholder="API Key" value={driveKey} onChange={e => setDriveKey(e.target.value)} style={{ flex: '1 1 320px', padding: 8 }} />
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button className="btn" onClick={() => { sessionStorage.setItem('drive_folder', driveFolder); sessionStorage.setItem('drive_key', driveKey); setShowConfig(false); }}>Save</button>
-            <button className="btn" onClick={() => { sessionStorage.removeItem('drive_folder'); sessionStorage.removeItem('drive_key'); setDriveFolder(DEFAULT_DRIVE_FOLDER); setDriveKey(DEFAULT_DRIVE_KEY); setShowConfig(false); }}>Reset</button>
-          </div>
-        </div>
-        <div style={{ marginTop: 8, color: '#cbd5e1', fontSize: 13 }}>
-          Keys entered here live only in your browser session (stored in sessionStorage). They are visible to anyone with access to your browser. For production, prefer restricted API keys set via server or environment.
-        </div>
-      </div>
-    )}
-  </div>
 
       {/* Gallery Section */}
       <section className="gallery-section">
