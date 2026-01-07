@@ -289,7 +289,7 @@
       flex-direction: row;
       padding: 0.5rem;
       gap: 0;
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       border-radius: 8px;
       width: 100%;
       height: 100%;
@@ -426,7 +426,7 @@
   }
   
   .navbar-links a {
-      font-size: 0.95rem;
+      font-size: 0.65rem;
       padding: 0.4rem;
   }
 }
