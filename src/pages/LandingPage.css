@@ -384,6 +384,7 @@ body {
     min-width: 100%;
     max-width: 100%;
     width: 100%;
+    overflow: visible;
   }
 
   .factory-desc p {
@@ -394,8 +395,18 @@ body {
   }
   
   .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .factory-carousel {
+    height: 220px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .factory-section {
+    padding: 2.5rem 0 2rem 0;
   }
 }
 
@@ -463,6 +474,38 @@ body {
   .features-container,
   .products-container {
     padding: 0 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .stat-item {
+    padding: 1rem 0.8rem;
+  }
+
+  .stat-number {
+    font-size: 1.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .factory-carousel {
+    height: 200px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .factory-content {
+    width: 95%;
+    gap: 1.5rem;
+  }
+
+  .factory-section {
+    padding: 2rem 0 2rem 0;
   }
 }
 
@@ -629,7 +672,7 @@ body {
   animation: sectionFadeIn 1.2s 1s both;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(245,245,220,0.3);
 }
 
