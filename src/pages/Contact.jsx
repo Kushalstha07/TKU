@@ -87,7 +87,7 @@ const Contact = () => {
                 <div className="info-icon">📞</div>
                 <div className="info-details">
                   <h3>Phone</h3>
-                  <p>9841529303</p>
+                  <p>9851209024</p>
                 </div>
               </div>
 
@@ -95,7 +95,7 @@ const Contact = () => {
                 <div className="info-icon">✉️</div>
                 <div className="info-details">
                   <h3>Email</h3>
-                  <p>example@.com</p>
+                  <p>trilochanakapadaudyog@gmail.com</p>
                 </div>
               </div>
 
@@ -111,8 +111,7 @@ const Contact = () => {
                 <div className="info-icon">🕒</div>
                 <div className="info-details">
                   <h3>Business Hours</h3>
-                  <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
-                  <p>Sat: 9:00 AM - 4:00 PM</p>
+                  <p>Sun - Sat: 9:00 AM - 6:00 PM</p>
                 </div>
               </div>
             </div>

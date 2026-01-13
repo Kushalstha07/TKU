@@ -35,7 +35,7 @@ const SupplyLocation = () => {
     <div className="supply-container">
       <section className="supply-hero">
         <div className="hero-content">
-          <h1 className="supply-title">Reaching Communities Across Nepal</h1>
+          <h1 className="supply-title">नेपालभर समुदायसम्म पहुँच</h1>
           <p className="supply-subtitle">
             From bustling city centers to regional hubs, our distribution partners ensure
             Trilochana Kapada Udyog fabrics remain close to the people who rely on them.
@@ -115,9 +115,9 @@ const SupplyLocation = () => {
         {/* Call to Action */}
         <div className="supply-cta">
           <div className="cta-content">
-            <h3>Looking for Distribution in Your Area?</h3>
+            <h3>के तपाईंको क्षेत्रमा वितरण खोज्दै हुनुहुन्छ?</h3>
             <p>We're always expanding our network. Contact us to discuss partnership opportunities.</p>
-            <button className='cta-button' onClick={() => navigate('/contact')}>Get in Touch</button>
+            <button className='cta-button' onClick={() => navigate('/contact')}>सम्पर्क गर्नुहोस्</button>
           </div>
         </div>
       </section>

@@ -137,7 +137,7 @@ const Services = () => {
       {/* Hero Section */}
       <section className="services-hero">
         <div className="hero-content">
-          <h1 className="services-title">Our Design Collection</h1>
+          <h1 className="services-title">हाम्रो डिजाइन संग्रह</h1>
           <p className="services-subtitle">
             Explore our extensive collection of exquisite fabric designs, 
             crafted with precision and artistic excellence
@@ -264,7 +264,7 @@ const Services = () => {
             Let us bring your vision to life with our exceptional designs and craftsmanship
           </p>
           <button className="cta-button" onClick={() => navigate('/contact')}>
-            Get Started Today
+            आजै सुरु गर्नुहोस्
           </button>
         </div>
       </section>

@@ -31,9 +31,9 @@ const Footer = () => {
         <div className="footer-section contact-section">
           <h4 className="section-title">Contact Info</h4>
           <div className="footer-contact">
-            <a href="tel:9841529303" className="contact-item">9841529303</a>
-            <a href="mailto:example@.com" className="contact-item">example@.com</a>
-            <div className="contact-item">Lubhu, Lalitpur, Nepal</div>
+            <a href="tel:9841529303" className="contact-item">9851209024</a>
+            <a href="mailto:example@.com" className="contact-item">trilochanakapadaudyog@gmail.com</a>
+            <div className="contact-item">Lubhu Lalitpur, Nepal</div>
           </div>
         </div>
       </div>

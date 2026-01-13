@@ -84,15 +84,18 @@ const LandingPage = () => {
         <div className="factory-content">
           <div className="factory-desc">
             <div className="desc-icon">🏭</div>
-            <h3>Excellence in Every Thread</h3>
-            <p>At Trilochana Kapada Udyog, we specialize in producing high-quality cotton Kapada that meet international standards. With advanced textile machinery, skilled craftsmanship, and a commitment to sustainable practices, we deliver materials trusted by fashion brands, manufacturers, and wholesalers worldwide.</p>
+            <h3>हरेक धागोमा उत्कृष्टता</h3>
+             <p>ट्रिलोचना कपडा उद्योगमा, हामी अन्तर्राष्ट्रिय मापदण्डहरू पूरा गर्ने उच्च गुणस्तरको कपास कपडा उत्पादनमा विशेषज्ञ छौं।</p>
+            <p>At Trilochana Kapada Udyog, we specialize in producing high-quality cotton Kapada that meet 
+            international standards.</p>
+           
             <div className="stats-grid">
               <div className="stat-item">
                 <span className="stat-number">10+</span>
                 <span className="stat-label">Years Experience</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">1000+</span>
+                <span className="stat-number">100+</span>
                 <span className="stat-label">Happy Clients</span>
               </div>
               <div className="stat-item">
@@ -149,32 +152,39 @@ const LandingPage = () => {
             <div className="feature-card">
               <div className="feature-icon">1</div>
               <h3>Premium Quality Fabrics</h3>
-              <p>Carefully sourced materials that offer durability, comfort, and a refined finish for every use.</p>
+              <p>Carefully sourced materials that offer durability, comfort, and a refined finish 
+              for every use.</p>
+              <p>टिकाउपन, आराम र आकर्षक फिनिस प्रदान गर्ने ध्यानपूर्वक चयन गरिएका सामग्रीहरू। </p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">2</div>
                 <h3>Wide Variety of Designs</h3>
                 <p>Explore an extensive range of colors, patterns, and textures to match every style and requirement.</p>
+                 <p>हरेक शैली र आवश्यकताअनुसार रंग, ढाँचा र बनावटको विस्तृत दायरा।</p>
                 </div>
                 <div className="feature-card">
                   <div className="feature-icon">3</div>
                   <h3>Sustainable Materials</h3>
                   <p>Eco-friendly fabrics produced with responsible practices to support a greener future.</p>
+                  <p>वातावरणमैत्री अभ्यासहरूसँग उत्पादन गरिएका कपडाहरू, हरित भविष्यको समर्थनका लागि।</p>
                   </div>
             <div className="feature-card">
               <div className="feature-icon">4</div>
               <h3>Fast Delivery</h3>
               <p>Quick turnaround times with reliable shipping to meet your deadlines without compromising quality.</p>
+              <p>गुणस्तरमा सम्झौता नगरी समयमै डेलिभरी सुनिश्चित गर्ने भरपर्दो ढुवानी सेवा।</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">5</div>
               <h3>Premium Quality</h3>
               <p>International standards with rigorous quality control ensuring every fabric meets excellence criteria.</p>
+              <p>कडा गुणस्तर नियन्त्रणसहित अन्तर्राष्ट्रिय मापदण्डहरू पूरा गर्ने उत्कृष्ट कपडा।</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">6</div>
               <h3>Trusted Partnership</h3>
               <p>Long-term relationships with clients worldwide, built on trust, reliability, and exceptional service.</p>
+              <p>विश्वास, भरपर्दोपन र उत्कृष्ट सेवामा आधारित विश्वव्यापी ग्राहकहरूसँगको दीर्घकालीन सम्बन्ध।</p>
             </div>
           </div>
         </div>
