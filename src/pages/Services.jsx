@@ -144,7 +144,7 @@ const Services = () => {
           </p>
           <div className="hero-stats">
             <div className="stat-item">
-                  <span className="stat-number">2</span>
+                  <span className="stat-number">{designImages.length}</span>
                   <span className="stat-label">Unique Designs</span>
             </div>
                 <div style={{ marginLeft: 8 }}>
@@ -210,10 +210,8 @@ const Services = () => {
                   />
                   <div className="image-overlay">
                     <div className="overlay-content">
-                      <h3 className="image-title">{image.title}</h3>
-                      <p className="image-category">{image.category}</p>
                       <button className="view-btn">
-                        <span>👁️</span> View Details
+                        <span>👁️</span> View
                       </button>
                     </div>
                   </div>
@@ -221,7 +219,7 @@ const Services = () => {
 
                 {/* debug links removed for production */}
 
-                <div className="item-number">{String(image.id).padStart(2, '0')}</div>
+                <div className="item-number">{String(index + 1).padStart(2, '0')}</div>
               </div>
             ))}
           </div>
@@ -243,14 +241,6 @@ const Services = () => {
                 className="lightbox-image"
                 onError={() => advanceImageSrc(selectedImage.id)}
               />
-              <div className="lightbox-info">
-                <h2 className="lightbox-title">{selectedImage.title}</h2>
-                <p className="lightbox-category">Category: {selectedImage.category}</p>
-                <p className="lightbox-description">
-                  This exquisite design showcases the finest craftsmanship and attention to detail, 
-                  representing the pinnacle of textile artistry.
-                </p>
-              </div>
             </div>
           </div>
         </div>

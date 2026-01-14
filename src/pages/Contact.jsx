@@ -16,8 +16,46 @@ const Contact = () => {
     message: '',
   });
 
+  const [errors, setErrors] = useState({
+    phone: '',
+    email: '',
+  });
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    // Allow only digits
+    return /^\d*$/.test(phone);
+  };
+
   const onChange = (e) => {
     const { name, value } = e.target;
+
+    // Phone validation - only allow numbers, max 10 digits
+    if (name === 'phone') {
+      if (!validatePhone(value)) {
+        setErrors((prev) => ({ ...prev, phone: 'Only numbers are allowed' }));
+        return; // Don't update if invalid
+      } else if (value.length > 10) {
+        setErrors((prev) => ({ ...prev, phone: 'Maximum 10 digits allowed' }));
+        return; // Don't update if too long
+      } else {
+        setErrors((prev) => ({ ...prev, phone: '' }));
+      }
+    }
+
+    // Email validation
+    if (name === 'email') {
+      if (value && !validateEmail(value)) {
+        setErrors((prev) => ({ ...prev, email: 'Please enter a valid email address' }));
+      } else {
+        setErrors((prev) => ({ ...prev, email: '' }));
+      }
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -42,15 +80,25 @@ const Contact = () => {
     try {
       setSubmitState({ status: 'sending', message: '' });
 
+      // Build a comprehensive message with all details
+      const fullMessage = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+      `.trim();
+
       await emailjs.send(
         serviceId,
         templateId,
         {
-          from_name: formData.name,
-          reply_to: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
+          name: formData.name,
+          email: formData.email,
+          title: formData.subject,
+          message: fullMessage,
         },
         { publicKey }
       );
@@ -137,11 +185,13 @@ const Contact = () => {
                 <div className="form-group">
                   <label htmlFor="email">Email Address</label>
                   <input type="email" id="email" name="email" value={formData.email} onChange={onChange} required />
+                  {errors.email && <span className="field-error">{errors.email}</span>}
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="phone">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={onChange} />
+                  <input type="tel" id="phone" name="phone" value={formData.phone} onChange={onChange} placeholder="Numbers only" />
+                  {errors.phone && <span className="field-error">{errors.phone}</span>}
                 </div>
 
                 <div className="form-group">
@@ -154,7 +204,7 @@ const Contact = () => {
                   <textarea id="message" name="message" rows="5" value={formData.message} onChange={onChange} required></textarea>
                 </div>
 
-                <button type="submit" className="submit-btn" disabled={submitState.status === 'sending'}>
+                <button type="submit" className="submit-btn" disabled={submitState.status === 'sending' || errors.email || errors.phone}>
                   {submitState.status === 'sending' ? 'Sending…' : 'Send Message'}
                 </button>
               </form>

@@ -195,6 +195,16 @@
   min-height: 120px;
 }
 
+.field-error {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.form-group input.invalid {
+  border-color: #dc3545;
+}
+
 .submit-btn {
   background: #8B4513;
   color: white;
