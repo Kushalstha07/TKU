@@ -1,15 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './LandingPage.css';
 import heroImage from '../assets/Heroimage.png';
-import factory1 from '../assets/factoryimage1.png';
-import factory2 from '../assets/factoryimage2.png';
-import factory3 from '../assets/factoryimage3.png';
-import factory4 from '../assets/factoryimage4.png';
 import third from '../assets/third.jpeg';
 import design16 from '../assets/design16.jpeg';
+import fi1 from '../assets/fi1.jpg';
+import fi2 from '../assets/fi2.jpg';
+import fi3 from '../assets/fi3.jpg';
+import fi4 from '../assets/fi4.jpg';
 
-const carouselImages = [factory1, factory2, factory3, factory4];
 
+const carouselImages = [ fi1, fi2, fi3, fi4];
 const LandingPage = () => {
   const bgRef = useRef(null);
   const [carouselIdx, setCarouselIdx] = useState(0);

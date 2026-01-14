@@ -64,7 +64,7 @@ const About = () => {
           </div>
 
           <div className="about-section">
-            <h2 className="section-title">हाम्रो मूल्यहरू(Our Values)</h2>
+            <h2 className="section-title">हाम्रा नैतिक मूल्यहरू(Our Moral Values)</h2>
             <div className="values-grid">
               <div className="value-item">
                 <div className="value-icon">✦</div>
