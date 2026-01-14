@@ -6,7 +6,7 @@
 }
 
 .contact-hero {
-  padding: 5rem 2rem 3rem;
+  padding: 6rem 2rem 3rem;
   text-align: center;
   background: linear-gradient(to bottom, #fff, #f9f9f9);
   border-bottom: 1px solid #e5e5e5;
@@ -32,14 +32,14 @@
   color: #333;
   margin-bottom: 1rem;
   line-height: 1.2;
-  padding-top: 4%;
+  padding-top: 2rem;
 }
 
 .contact-subtitle {
   font-size: 1.1rem;
   color: #666;
   line-height: 1.6;
-  padding-top: 4%;
+  padding-top: 0;
 }
 
 .contact-content {
