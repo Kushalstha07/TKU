@@ -50,7 +50,7 @@ const LandingPage = () => {
         />
         <div className="landing-text">
           <h1 className="hero-title">Crafting Quality Fabrics for a Sustainable Future</h1>
-          <p className="hero-subtitle">नेपालको गर्वको रेशम उद्योग - Where Tradition Meets Innovation</p>
+          <p className="hero-subtitle">नेपालको गर्वको कटन उद्योग - Where Tradition Meets Innovation</p>
           <button className="cta-btn" onClick={() => document.querySelector('.factory-section').scrollIntoView({ behavior: 'smooth' })}>
             Discover Our Story
           </button>
@@ -178,7 +178,7 @@ const LandingPage = () => {
               <div className="feature-icon">5</div>
               <h3>Premium Quality</h3>
               <p>International standards with rigorous quality control ensuring every fabric meets excellence criteria.</p>
-              <p>कडा गुणस्तर नियन्त्रणसहित अन्तर्राष्ट्रिय मापदण्डहरू पूरा गर्ने उत्कृष्ट कपडा।</p>
+              <p>गुणस्तर नियन्त्रणसहित अन्तर्राष्ट्रिय मापदण्डहरू पूरा गर्ने उत्कृष्ट कपडा।</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">6</div>

@@ -12,7 +12,7 @@ import SupplyLocation from './pages/SupplyLocation';
 
 function App() {
   return (
-    <Router basename="/TKU">
+    <Router>
       <ScrollToTop />
       <div className="app">
         <Navbar />

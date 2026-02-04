@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import logo from '../assets/logo.png';
+import { FaFacebookF } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,18 @@ const Footer = () => {
           <div className="footer-contact">
             <a href="tel:9841529303" className="contact-item">9851209024</a>
             <a href="mailto:example@.com" className="contact-item">trilochanakapadaudyog@gmail.com</a>
-            <div className="contact-item">Lubhu Lalitpur, Nepal</div>
+            <div className='contact-item'>Lubhu, Lalitpur Nepal</div>
+<div className="facebook-logo">
+  <a
+    href="https://www.facebook.com/profile.php?id=61579072449361"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <button className="facebook-btn">
+      <FaFacebookF />
+    </button>
+  </a>
+</div>
           </div>
         </div>
       </div>
