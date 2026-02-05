@@ -245,7 +245,7 @@ const LandingPage = () => {
 
       {/* Founder */}
      
-        <h2> Our Founders</h2>
+        <h2 className='section-title'> Our Founders</h2>
          <section className='founder'>
         <div className='foundercard'>
           <img src={founderone}  className='founder-image'/>
