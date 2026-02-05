@@ -1215,6 +1215,55 @@ body {
   font-weight: 700;
   flex-shrink: 0;
 }
+.founder{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 3rem;
+  gap: 2rem;
+  justify-items: center;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+
+.foundercard {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(139, 69, 19, 0.2);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.foundercard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(139, 69, 19, 0.25);
+  border-color: rgba(139, 69, 19, 0.4);
+}
+
+.founder-image{
+  height: 470px;
+  width: 350px;
+  border-radius: 1rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.foundercard h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8B4513;
+  margin: 0.5rem 0;
+}
+
+.foundercard h2:nth-child(3) {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #666;
+}
 
 /* Responsive adjustments for products */
 @media (max-width: 968px) {

@@ -7,6 +7,8 @@ import fi1 from '../assets/fi1.jpg';
 import fi2 from '../assets/fi2.jpg';
 import fi3 from '../assets/fi3.jpg';
 import fi4 from '../assets/fi4.jpg';
+import  founderone from '../assets/founderone.jpg';
+import foundertwo from '../assets/foundertwo.jpg';
 
 
 const carouselImages = [ fi1, fi2, fi3, fi4];
@@ -156,32 +158,17 @@ const LandingPage = () => {
               for every use.</p>
               <p>टिकाउपन, आराम र आकर्षक फिनिस प्रदान गर्ने ध्यानपूर्वक चयन गरिएका सामग्रीहरू। </p>
               </div>
-              <div className="feature-card">
-                <div className="feature-icon">2</div>
-                <h3>Wide Variety of Designs</h3>
-                <p>Explore an extensive range of colors, patterns, and textures to match every style and requirement.</p>
-                 <p>हरेक शैली र आवश्यकताअनुसार रंग, ढाँचा र बनावटको विस्तृत दायरा।</p>
-                </div>
-                <div className="feature-card">
-                  <div className="feature-icon">3</div>
-                  <h3>Sustainable Materials</h3>
-                  <p>Eco-friendly fabrics produced with responsible practices to support a greener future.</p>
-                  <p>वातावरणमैत्री अभ्यासहरूसँग उत्पादन गरिएका कपडाहरू, हरित भविष्यको समर्थनका लागि।</p>
-                  </div>
+              
+                
             <div className="feature-card">
-              <div className="feature-icon">4</div>
+              <div className="feature-icon">2</div>
               <h3>Fast Delivery</h3>
               <p>Quick turnaround times with reliable shipping to meet your deadlines without compromising quality.</p>
               <p>गुणस्तरमा सम्झौता नगरी समयमै डेलिभरी सुनिश्चित गर्ने भरपर्दो ढुवानी सेवा।</p>
             </div>
+            
             <div className="feature-card">
-              <div className="feature-icon">5</div>
-              <h3>Premium Quality</h3>
-              <p>International standards with rigorous quality control ensuring every fabric meets excellence criteria.</p>
-              <p>गुणस्तर नियन्त्रणसहित अन्तर्राष्ट्रिय मापदण्डहरू पूरा गर्ने उत्कृष्ट कपडा।</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">6</div>
+              <div className="feature-icon">3</div>
               <h3>Trusted Partnership</h3>
               <p>Long-term relationships with clients worldwide, built on trust, reliability, and exceptional service.</p>
               <p>विश्वास, भरपर्दोपन र उत्कृष्ट सेवामा आधारित विश्वव्यापी ग्राहकहरूसँगको दीर्घकालीन सम्बन्ध।</p>
@@ -253,10 +240,35 @@ const LandingPage = () => {
               </div>
             </div>
           </div>
-
-
         </div>
       </section>
+
+      {/* Founder */}
+     
+        <h2> Our Founders</h2>
+         <section className='founder'>
+        <div className='foundercard'>
+          <img src={founderone}  className='founder-image'/>
+          <h2>Ananta Shrestha</h2>
+          <h2> 9851209024</h2>
+
+        </div>
+
+         <div className='foundercard'>
+          <img src={foundertwo}  className='founder-image'/>
+          <h2> Sunil Shrestha</h2>
+          <h2> 9851098023</h2>
+        </div>
+
+         <div className='foundercard'>
+          <img src={design16}  className='founder-image'/>
+          <h2> Saroj Shrestha</h2>
+          <h2> 9851209024</h2>
+        </div>
+        
+      </section>
+
+
     </div>
   );
 };
