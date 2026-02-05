@@ -9,6 +9,7 @@ import fi3 from '../assets/fi3.jpg';
 import fi4 from '../assets/fi4.jpg';
 import  founderone from '../assets/founderone.jpg';
 import foundertwo from '../assets/foundertwo.jpg';
+import founderthree from '../assets/founderthree.jpg';
 
 
 const carouselImages = [ fi1, fi2, fi3, fi4];
@@ -261,7 +262,7 @@ const LandingPage = () => {
         </div>
 
          <div className='foundercard'>
-          <img src={design16}  className='founder-image'/>
+          <img src={founderthree}  className='founder-image'/>
           <h2> Saroj Shrestha</h2>
           <h2> 9851209024</h2>
         </div>
