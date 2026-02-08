@@ -245,28 +245,23 @@ const LandingPage = () => {
       </section>
 
       {/* Founder */}
-     
-        <h2 className='section-title'> Our Founders</h2>
+
+        <h2 className='section-title'> Our Founder</h2>
          <section className='founder'>
         <div className='foundercard'>
           <img src={founderone}  className='founder-image'/>
-          <h2>Ananta Shrestha</h2>
-          <h2> 9851209024</h2>
+          <div className='founder-text'>
+            <h2 style={{ textAlign: 'center' }}>Ananta Shrestha</h2>
+            <br /><br /><br />
+            
+            <p>हाम्रो वस्त्र उद्योगमा तपाईंलाई हार्दिक स्वागत छ। गुणस्तर, विश्वास र नवप्रवर्तनलाई आधार मानेर स्थापना गरिएको हाम्रो कम्पनीले नेपाली तथा अन्तर्राष्ट्रिय बजारका लागि उत्कृष्ट कपडा उत्पादन गर्दै आएको छ。</p>
+            <p>हामी आधुनिक प्रविधि र परम्परागत सीपको संयोजन गर्दै टिकाउ, आकर्षक र आरामदायी वस्त्र निर्माण गर्छौं। कच्चा पदार्थको छनोटदेखि तयार कपडासम्म हरेक चरणमा गुणस्तरमा कुनै सम्झौता गर्दैनौं।</p>
+            <p>हाम्रो लक्ष्य केवल व्यापार गर्नु मात्र होइन, तर नेपाली वस्त्र उद्योगलाई विश्वस्तरमा चिनाउनु पनि हो। त्यसका लागि हामी वातावरणमैत्री उत्पादन प्रक्रिया, श्रमिकको सम्मान र दीर्घकालीन विकासमा विश्वास गर्छौं।</p>
+            <p>हामीप्रति देखाउनुभएको विश्वासका लागि धन्यवाद। भविष्यमा पनि उत्कृष्ट सेवा र गुणस्तरका साथ तपाईंको भरोसाको साझेदार बन्ने प्रतिबद्धता व्यक्त गर्दछु। धन्यवाद। – कम्पनीका मालिक</p>
+          </div>
 
         </div>
 
-         <div className='foundercard'>
-          <img src={foundertwo}  className='founder-image'/>
-          <h2> Sunil Shrestha</h2>
-          <h2> 9851098023</h2>
-        </div>
-
-         <div className='foundercard'>
-          <img src={founderthree}  className='founder-image'/>
-          <h2> Saroj Shrestha</h2>
-          <h2> 9851209024</h2>
-        </div>
-        
       </section>
 
 
